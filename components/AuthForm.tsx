@@ -66,7 +66,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
       <div className="relative mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1fr_430px] lg:items-center">
         <div className="hidden lg:block">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-bold text-indigo-700 shadow-sm ring-1 ring-slate-200">
-            <Flame size={15} /> MathLab KZ аккаунты
+            <Flame size={15} /> MathLab аккаунты
           </div>
           <h1 className="display-font max-w-xl text-6xl font-black leading-[0.98] text-slate-900">
             Математиканы <span className="text-indigo-600">зерттеп</span>, нәтижеңді бақыла.

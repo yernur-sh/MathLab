@@ -4,7 +4,7 @@ import { AppProviders } from "./providers";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "MathLab KZ — Математика зертханасы",
+  title: "MathLab — Математика зертханасы",
   description: "Мектеп математикасын интерактивті түрде зерттеуге арналған ғылыми жоба.",
 };
 
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main className="min-h-screen">{children}</main>
           <footer className="border-t border-slate-200/80 bg-white/70">
             <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-              <span>© {new Date().getFullYear()} MathLab KZ</span>
+              <span>© {new Date().getFullYear()} MathLab</span>
               <span>Математика • Зерттеу • Тәжірибе</span>
             </div>
           </footer>
