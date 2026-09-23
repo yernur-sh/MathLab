@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { BookOpen, Calculator, ChevronDown, LogIn, Menu, Sigma, Sparkles, UserRound, X } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "./AuthProvider";
-import { Button } from "./ui";
 
 const links = [
   { href: "/", label: "Басты бет" },
@@ -30,7 +29,7 @@ export default function Header() {
             <Sigma size={23} strokeWidth={2.4} />
           </div>
           <div className="hidden sm:block">
-            <div className="text-sm font-extrabold text-slate-900">MathLab KZ</div>
+            <div className="text-sm font-extrabold text-slate-900">MathLab</div>
             <div className="text-[11px] text-slate-500">математика зертханасы</div>
           </div>
         </Link>
