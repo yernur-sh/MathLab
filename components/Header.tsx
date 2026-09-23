@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, Calculator, ChevronDown, LogIn, Menu, Sigma, Sparkles, UserRound, X } from "lucide-react";
+import { BookOpen, Calculator, ChevronDown, FunctionSquare, LogIn, Menu, Shapes, Sigma, Sparkles, UserRound, X } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "./AuthProvider";
 
@@ -10,7 +10,9 @@ const links = [
   { href: "/", label: "Басты бет" },
   { href: "/theory", label: "Тақырыптар", icon: BookOpen },
   { href: "/practice", label: "Тест", icon: Sparkles },
-  { href: "/calculator", label: "Практика", icon: Calculator }
+  { href: "/calculator", label: "Практика", icon: Calculator },
+  { href: "/formulas", label: "Формулалар", icon: FunctionSquare },
+  { href: "/shapes", label: "Фигуралар", icon: Shapes },
 ];
 
 export default function Header() {
