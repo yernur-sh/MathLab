@@ -95,7 +95,7 @@ const quickFormulas = [
 ];
 
 export default function TheoryPage() {
-  const [open, setOpen] = useState("alg");
+  const [open, setOpen] = useState("");
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Барлығы");
   const categories = ["Барлығы", ...Array.from(new Set(topics.map((topic) => topic.category)))];
