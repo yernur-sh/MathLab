@@ -16,6 +16,17 @@ const questions = [
   { question: "P(A)=0.25 нені білдіреді?", options: ["25% ықтималдық", "2.5% ықтималдық", "75% ықтималдық", "4% ықтималдық"], answer: 0, hint: "0.25 × 100% = 25%." },
   { question: "y = 2x + 1 функциясының көлбеулік коэффициенті қандай?", options: ["1", "2", "−2", "3"], answer: 1, hint: "y = kx + b формуласында x алдындағы санды тап." },
   { question: "D = b² − 4ac, a=1, b=4, c=4 болса, D неге тең?", options: ["0", "4", "8", "16"], answer: 0, hint: "16 − 16 = 0." },
+  { question: "240 санының 15%-ы қанша?", options: ["24", "30", "36", "40"], answer: 2, hint: "240 · 15 / 100 есепте." },
+  { question: "y = 3x − 2 функциясында x = 4 болса, y неге тең?", options: ["8", "10", "12", "14"], answer: 1, hint: "x орнына 4 қой: 3 · 4 − 2." },
+  { question: "5, 8, 11, 14, ... тізбегінің келесі мүшесі?", options: ["15", "16", "17", "18"], answer: 2, hint: "Әр мүшеге 3 қосылып тұр." },
+  { question: "x + y = 10, x − y = 2 жүйесінде x неге тең?", options: ["4", "5", "6", "8"], answer: 2, hint: "Екі теңдеуді қосып, 2x = 12 теңдігін ал." },
+  { question: "6, 8, 10, 12 сандарының арифметикалық ортасы қандай?", options: ["8", "9", "10", "36"], answer: 1, hint: "Қосындыны 4-ке бөл." },
+  { question: "Қапта 3 қызыл, 2 көк шар бар. Қызыл шар алу ықтималдығы?", options: ["2/5", "3/5", "1/2", "3/2"], answer: 1, hint: "Қызыл шар санын барлық шар санына бөл." },
+  { question: "Үшбұрыштың табаны 10 см, биіктігі 6 см. Ауданы қанша?", options: ["16 см²", "30 см²", "60 см²", "120 см²"], answer: 1, hint: "S = 1/2 · a · h формуласын қолдан." },
+  { question: "2x − 5 = 13 теңдеуінің шешімі қандай?", options: ["4", "7", "9", "18"], answer: 2, hint: "Алдымен 5-ті қос, кейін 2-ге бөл." },
+  { question: "Радиусы 5 см шеңбердің ұзындығы қай формуламен табылады?", options: ["πr²", "2πr", "a² + b²", "1/2ah"], answer: 1, hint: "Шеңбер ұзындығының формуласы C = 2πr." },
+  { question: "Егер a₁ = 4 және d = 3 болса, арифметикалық прогрессияның 5-мүшесі?", options: ["13", "16", "19", "20"], answer: 2, hint: "a₅ = a₁ + 4d формуласын қолдан." },
+  { question: "Кубикті лақтырғанда 6 санының түсу ықтималдығы қандай?", options: ["1/2", "1/3", "1/6", "6"], answer: 2, hint: "Бір қолайлы нәтиже, барлығы алты нәтиже бар." },
 ];
 
 export default function PracticePage() {
@@ -24,8 +35,7 @@ export default function PracticePage() {
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
+    const [saved, setSaved] = useState(false);
 
   const question = questions[index];
   const progress = Math.round(((index + (selected !== null ? 1 : 0)) / questions.length) * 100);
@@ -34,8 +44,7 @@ export default function PracticePage() {
   useEffect(() => {
     if (!done || !user || saved) return;
     let ignore = false;
-    setSaving(true);
-    saveQuizResult(user, score, questions.length).then(() => { if (!ignore) setSaved(true); }).catch(() => {}).finally(() => { if (!ignore) setSaving(false); });
+    saveQuizResult(user, score, questions.length).then(() => { if (!ignore) setSaved(true); }).catch(() => {});
     return () => { ignore = true; };
   }, [done, user, score, saved]);
 
@@ -52,17 +61,17 @@ export default function PracticePage() {
   }
 
   function restart() {
-    setIndex(0); setSelected(null); setScore(0); setDone(false); setSaved(false); setSaving(false);
+    setIndex(0); setSelected(null); setScore(0); setDone(false); setSaved(false);
   }
 
   if (done) {
-    return <div className="bg-[linear-gradient(180deg,#f7fbff,#ffffff)] px-5 py-16"><div className="mx-auto max-w-3xl"><div className="rounded-[2rem] border border-slate-200 bg-white p-7 text-center shadow-xl shadow-slate-200/50 sm:p-10"><div className="mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-amber-50 text-amber-500"><Trophy size={30} /></div><div className="mt-5 text-xs font-black uppercase tracking-[0.2em] text-indigo-500">Нәтиже</div><h1 className="mt-2 display-font text-5xl font-black text-slate-900">{score} / {questions.length}</h1><p className="mx-auto mt-3 max-w-md text-slate-500">Сіз {percent}% нәтиже көрсеттіңіз. Қателерді қайта қарап, тестті тағы бір рет орындауға болады.</p><div className="mt-8 grid gap-3 sm:grid-cols-3"><div className="rounded-2xl bg-emerald-50 p-4"><div className="text-xs font-bold text-emerald-600">Дұрыс</div><div className="mt-1 text-2xl font-black text-emerald-800">{score}</div></div><div className="rounded-2xl bg-rose-50 p-4"><div className="text-xs font-bold text-rose-600">Қате</div><div className="mt-1 text-2xl font-black text-rose-800">{questions.length - score}</div></div><div className="rounded-2xl bg-indigo-50 p-4"><div className="text-xs font-bold text-indigo-600">Пайыз</div><div className="mt-1 text-2xl font-black text-indigo-800">{percent}%</div></div></div><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><button onClick={restart} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-5 py-3 font-bold text-slate-700 hover:bg-slate-50"><RotateCcw size={17} /> Қайта орындау</button><Link href="/profile" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 font-bold text-white">Профильді көру <ArrowRight size={17} /></Link></div>{user && <div className="mt-5 text-xs text-slate-400">{saving ? "Нәтиже сақталуда..." : saved ? "✓ Нәтиже Firebase профиліңізге сақталды." : ""}</div>}</div></div></div>;
+    return <div className="bg-[linear-gradient(180deg,#f7fbff,#ffffff)] px-5 py-16"><div className="mx-auto max-w-3xl"><div className="rounded-[2rem] border border-slate-200 bg-white p-7 text-center shadow-xl shadow-slate-200/50 sm:p-10"><div className="mx-auto grid h-16 w-16 place-items-center rounded-3xl bg-amber-50 text-amber-500"><Trophy size={30} /></div><div className="mt-5 text-xs font-black uppercase tracking-[0.2em] text-indigo-500">Нәтиже</div><h1 className="mt-2 display-font text-5xl font-black text-slate-900">{score} / {questions.length}</h1><p className="mx-auto mt-3 max-w-md text-slate-500">Сіз {percent}% нәтиже көрсеттіңіз. Қателерді қайта қарап, тестті тағы бір рет орындауға болады.</p><div className="mt-8 grid gap-3 sm:grid-cols-3"><div className="rounded-2xl bg-emerald-50 p-4"><div className="text-xs font-bold text-emerald-600">Дұрыс</div><div className="mt-1 text-2xl font-black text-emerald-800">{score}</div></div><div className="rounded-2xl bg-rose-50 p-4"><div className="text-xs font-bold text-rose-600">Қате</div><div className="mt-1 text-2xl font-black text-rose-800">{questions.length - score}</div></div><div className="rounded-2xl bg-indigo-50 p-4"><div className="text-xs font-bold text-indigo-600">Пайыз</div><div className="mt-1 text-2xl font-black text-indigo-800">{percent}%</div></div></div><div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"><button onClick={restart} className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-5 py-3 font-bold text-slate-700 hover:bg-slate-50"><RotateCcw size={17} /> Қайта орындау</button><Link href="/profile" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 font-bold text-white">Профильді көру <ArrowRight size={17} /></Link></div>{user && <div className="mt-5 text-xs text-slate-400">{saved ? "✓ Нәтиже профиліңізге сақталды." : "Нәтиже сақталуда..."}</div>}</div></div></div>;
   }
 
   return (
     <div className="bg-[linear-gradient(180deg,#f8fbff,#fff)] px-5 py-14">
       <div className="mx-auto max-w-4xl">
-        <SectionTitle eyebrow="02 · Практика" title="Өзіңді тексер" description="8 қысқа есеп. Әр сұраққа бір жауап таңда. Дұрыс жауаптан кейін келесі қадамға өтесің." />
+        <SectionTitle eyebrow="02 · Тест" title="Біліміңді тексер" description="20 сұрақтан тұратын тест. Әр сұраққа бір жауап таңда да, нәтижені соңында көр." />
         <div className="mt-9 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/50">
           <div className="h-2 bg-slate-100"><div className="h-full rounded-full bg-indigo-500 transition-all" style={{ width: `${Math.max(8, progress)}%` }} /></div>
           <div className="p-6 sm:p-9">
@@ -73,7 +82,7 @@ export default function PracticePage() {
             <div className="mt-7 flex items-center justify-between gap-3"><Link href="/theory" className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-slate-800"><ArrowLeft size={16} /> Теорияға</Link><button disabled={selected === null} onClick={next} className="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-200 transition hover:bg-indigo-700 disabled:opacity-40">{index === questions.length - 1 ? "Нәтижені көру" : "Келесі"} <ArrowRight size={17} /></button></div>
           </div>
         </div>
-        <div className="mt-5 flex items-center justify-center gap-2 text-xs text-slate-400"><Sparkles size={14} /> Дұрыс жауаптарды профильге сақтау үшін аккаунтқа кіріңіз.</div>
+        <div className="mt-5 flex items-center justify-center gap-2 text-xs text-slate-400"><Sparkles size={14} /> Нәтижеңді профильде сақтау үшін аккаунтқа кіріңіз.</div>
       </div>
     </div>
   );

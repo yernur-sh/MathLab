@@ -4,8 +4,8 @@ import MathDecor from "@/components/MathDecor";
 
 const features = [
   { icon: BookOpen, title: "Теория", text: "Мектеп бағдарламасындағы негізгі тақырыптарды қысқа әрі көрнекі түрде оқы.", href: "/theory", tone: "bg-sky-50 text-sky-700" },
-  { icon: Sparkles, title: "Практика", text: "Тақырыпты бірден тест арқылы бекітіп, нәтижеңді автоматты есепте.", href: "/practice", tone: "bg-violet-50 text-violet-700" },
-  { icon: FlaskConical, title: "Зертхана", text: "Формулаларды құралдар арқылы байқап көр: пайыз, квадрат теңдеу, Пифагор.", href: "/calculator", tone: "bg-emerald-50 text-emerald-700" },
+  { icon: Sparkles, title: "Тест", text: "Біліміңді көптеген сұрақ арқылы тексеріп, нәтижені профильде сақта.", href: "/practice", tone: "bg-violet-50 text-violet-700" },
+  { icon: FlaskConical, title: "Практика", text: "Мәтін, сан және логикалық есептерді шығарып, жауапты бірден тексер.", href: "/calculator", tone: "bg-emerald-50 text-emerald-700" },
 ];
 
 const formula = ["a² + b² = c²", "D = b² − 4ac", "S = πr²", "P(A) = m / n"];
@@ -26,7 +26,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">MathLab — теорияны оқу, есеп шығару, тест тапсыру және математикалық формулаларды интерактивті зерттеу үшін жасалған оқу платформасы.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/practice" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3.5 text-sm font-bold text-white shadow-xl shadow-slate-200 hover:bg-slate-800">Практиканы бастау <ArrowRight size={18} /></Link>
+              <Link href="/practice" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3.5 text-sm font-bold text-white shadow-xl shadow-slate-200 hover:bg-slate-800">Тестті бастау <ArrowRight size={18} /></Link>
               <Link href="/theory" className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white/90 px-5 py-3.5 text-sm font-bold text-slate-700 shadow-sm hover:bg-white">Тақырыптарды көру</Link>
             </div>
             <div className="mt-8 flex flex-wrap gap-6 text-sm text-slate-500">
