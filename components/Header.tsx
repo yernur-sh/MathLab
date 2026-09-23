@@ -9,8 +9,8 @@ import { useAuth } from "./AuthProvider";
 const links = [
   { href: "/", label: "Басты бет" },
   { href: "/theory", label: "Тақырыптар", icon: BookOpen },
-  { href: "/practice", label: "Практика", icon: Sparkles },
-  { href: "/calculator", label: "Зертхана", icon: Calculator },
+  { href: "/practice", label: "Тест", icon: Sparkles },
+  { href: "/calculator", label: "Практика", icon: Calculator },
 ];
 
 export default function Header() {
