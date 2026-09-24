@@ -53,11 +53,7 @@ export default function Header() {
           ) : user ? (
             <div className="relative">
               <button onClick={() => setProfileOpen((v) => !v)} className="selection-ring inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-1.5 shadow-sm" aria-expanded={profileOpen}>
-                {user.photoURL ? (
-                  <img src={user.photoURL} alt="" className="h-8 w-8 rounded-xl object-cover" />
-                ) : (
-                  <div className="grid h-8 w-8 place-items-center rounded-xl bg-indigo-100 text-indigo-700"><UserRound size={17} /></div>
-                )}
+                <img src={user.photoURL || "/default-avatar.svg"} alt="" loading="eager" decoding="async" fetchPriority="high" referrerPolicy="no-referrer" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/default-avatar.svg"; }} className="h-8 w-8 rounded-xl object-cover" />
                 <span className="hidden max-w-24 truncate text-sm font-bold text-slate-700 sm:block">{user.displayName || user.email?.split("@")[0] || "Профиль"}</span>
                 <ChevronDown size={16} className="text-slate-400" />
               </button>
