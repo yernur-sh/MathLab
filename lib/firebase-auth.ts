@@ -41,11 +41,15 @@ export function logout() {
 }
 
 export async function ensureProgress(user: User) {
-  const ref = doc(db, "users", user.uid);
-  const snapshot = await getDoc(ref);
-  if (!snapshot.exists()) {
-    const initial: Progress = { bestScore: 0, bestTotal: 0, quizzesTaken: 0, solvedQuestions: 0, updatedAt: Date.now() };
-    await setDoc(ref, { ...initial, email: user.email, displayName: user.displayName || "Оқушы" });
+  try {
+    const ref = doc(db, "users", user.uid);
+    const snapshot = await getDoc(ref);
+    if (!snapshot.exists()) {
+      const initial: Progress = { bestScore: 0, bestTotal: 0, quizzesTaken: 0, solvedQuestions: 0, updatedAt: Date.now() };
+      await setDoc(ref, { ...initial, email: user.email, displayName: user.displayName || "Оқушы" });
+    }
+  } catch {
+    // Authentication should not fail if Firestore is temporarily unavailable.
   }
 }
 
