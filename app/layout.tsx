@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="kk">
+    <html lang="kk" data-scroll-behavior="smooth">
       <body>
         <AppProviders>
           <Header />

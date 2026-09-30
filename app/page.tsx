@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Calculator, CheckCircle2, FlaskConical, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Bot, Calculator, CheckCircle2, FlaskConical, Sparkles } from "lucide-react";
 import MathDecor from "@/components/MathDecor";
 
 const features = [
   { icon: BookOpen, title: "Теория", text: "Мектеп бағдарламасындағы негізгі тақырыптарды қысқа әрі көрнекі түрде оқы.", href: "/theory", tone: "bg-sky-50 text-sky-700" },
   { icon: Sparkles, title: "Тест", text: "Біліміңді көптеген сұрақ арқылы тексеріп, нәтижені профильде сақта.", href: "/practice", tone: "bg-violet-50 text-violet-700" },
   { icon: FlaskConical, title: "Практика", text: "Мәтін, сан және логикалық есептерді шығарып, жауапты бірден тексер.", href: "/calculator", tone: "bg-emerald-50 text-emerald-700" },
+  { icon: Bot, title: "ЖИ-көмекші", text: "Математика сұрағын қойып, түсінікті қадамдармен жауап ал.", href: "/assistant", tone: "bg-indigo-50 text-indigo-700" },
 ];
 
 const formula = ["a² + b² = c²", "D = b² − 4ac", "S = πr²", "P(A) = m / n"];
@@ -30,7 +31,7 @@ export default function HomePage() {
               <Link href="/theory" className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white/90 px-5 py-3.5 text-sm font-bold text-slate-700 shadow-sm hover:bg-white">Тақырыптарды көру</Link>
             </div>
             <div className="mt-8 flex flex-wrap gap-6 text-sm text-slate-500">
-              <span className="inline-flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-500" /> 5 оқу бөлімі</span>
+              <span className="inline-flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-500" /> 6 оқу бөлімі</span>
               <span className="inline-flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-500" /> 8 тест сұрағы</span>
               <span className="inline-flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-500" /> Практикалық құралдар</span>
             </div>
@@ -60,10 +61,10 @@ export default function HomePage() {
 
       <section className="relative mx-auto max-w-7xl px-5 py-20">
         <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-          <div><div className="text-xs font-black uppercase tracking-[0.2em] text-indigo-500">Бір жобада</div><h2 className="mt-3 display-font text-4xl font-black text-slate-900">Математиканы үш қырынан үйрен.</h2></div>
+          <div><div className="text-xs font-black uppercase tracking-[0.2em] text-indigo-500">Бір жобада</div><h2 className="mt-3 display-font text-4xl font-black text-slate-900">Математиканы бірге үйрен.</h2></div>
           <p className="max-w-2xl text-base leading-7 text-slate-600 lg:justify-self-end">Түсіну, қолдану және тексеру — математика үйренудің ең тиімді жолы. Өзіңе қажетті бөлімді таңдап, бірден баста.</p>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {features.map((feature) => { const Icon = feature.icon; return <Link key={feature.href} href={feature.href} className="group rounded-[1.7rem] border border-slate-200/80 bg-white p-6 card-shadow transition hover:-translate-y-1"><div className={`grid h-12 w-12 place-items-center rounded-2xl ${feature.tone}`}><Icon size={22} /></div><h3 className="mt-5 text-xl font-black text-slate-900">{feature.title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{feature.text}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-indigo-600">Ашу <ArrowRight size={16} className="transition group-hover:translate-x-1" /></span></Link> })}
         </div>
       </section>

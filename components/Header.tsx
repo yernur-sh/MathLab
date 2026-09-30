@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, Calculator, ChevronDown, FunctionSquare, LogIn, Menu, Shapes, Sigma, Sparkles, UserRound, X } from "lucide-react";
+import { BookOpen, Bot, Calculator, ChevronDown, FunctionSquare, LogIn, Menu, Shapes, Sigma, Sparkles, UserRound, X } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "./AuthProvider";
 
@@ -13,6 +13,7 @@ const links = [
   { href: "/calculator", label: "Практика", icon: Calculator },
   { href: "/formulas", label: "Формулалар", icon: FunctionSquare },
   { href: "/shapes", label: "Фигуралар", icon: Shapes },
+  { href: "/assistant", label: "ЖИ-көмекші", icon: Bot },
 ];
 
 export default function Header() {
@@ -26,7 +27,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/75 backdrop-blur-xl">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-5">
-        <Link href="/" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
+        <Link href="/" className="flex shrink-0 items-center gap-3" onClick={() => setMenuOpen(false)}>
           <div className="grid h-10 w-10 place-items-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-200">
             <Sigma size={23} strokeWidth={2.4} />
           </div>
@@ -36,18 +37,18 @@ export default function Header() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden shrink-0 items-center gap-0.5 xl:flex">
           {links.map((link) => {
             const Icon = link.icon;
             return (
-              <Link key={link.href} href={link.href} className={`rounded-xl px-3.5 py-2 text-sm font-semibold transition ${isActive(link.href) ? "bg-indigo-50 text-indigo-700" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}`}>
-                <span className="inline-flex items-center gap-2">{Icon && <Icon size={16} />}{link.label}</span>
+              <Link key={link.href} href={link.href} className={`shrink-0 whitespace-nowrap rounded-xl px-2.5 py-2 text-[13px] font-semibold transition ${isActive(link.href) ? "bg-indigo-50 text-indigo-700" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}`}>
+                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">{Icon && <Icon size={16} className="shrink-0" />}{link.label}</span>
               </Link>
             );
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           {loading ? (
             <div className="h-10 w-28 animate-pulse rounded-2xl bg-slate-100" />
           ) : user ? (
@@ -74,14 +75,14 @@ export default function Header() {
               <Link href="/register" className="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-200 hover:bg-slate-800">Тіркелу</Link>
             </div>
           )}
-          <button className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white md:hidden" onClick={() => setMenuOpen((v) => !v)} aria-label="Мәзір">
+          <button className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white xl:hidden" onClick={() => setMenuOpen((v) => !v)} aria-label="Мәзір">
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
       {menuOpen && (
-        <div className="border-t border-slate-200 bg-white px-5 py-3 md:hidden">
+        <div className="border-t border-slate-200 bg-white px-5 py-3 xl:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-1">
             {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className={`rounded-xl px-3 py-3 text-sm font-semibold ${isActive(link.href) ? "bg-indigo-50 text-indigo-700" : "text-slate-600"}`}>{link.label}</Link>)}
             {!user && !loading && <div className="mt-2 flex gap-2 border-t border-slate-100 pt-3"><Link className="flex-1 rounded-xl border border-slate-200 px-4 py-3 text-center text-sm font-semibold" href="/login">Кіру</Link><Link className="flex-1 rounded-xl bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white" href="/register">Тіркелу</Link></div>}

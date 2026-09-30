@@ -31,6 +31,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
   const [showPassword, setShowPassword] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const destination = () => new URLSearchParams(window.location.search).get("next") === "/assistant" ? "/assistant" : "/profile";
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,7 +40,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
     try {
       if (isRegister) await register(name, email, password);
       else await login(email, password);
-      router.replace("/profile");
+      router.replace(destination());
     } catch (err) {
       setError(friendlyError(err));
     } finally {
@@ -52,7 +53,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
     setBusy(true);
     try {
       await googleLogin();
-      router.replace("/profile");
+      router.replace(destination());
     } catch (err) {
       setError(friendlyError(err));
     } finally {
@@ -103,7 +104,7 @@ export default function AuthForm({ mode }: { mode: "login" | "register" }) {
 
           <p className="mt-6 text-center text-sm text-slate-500">
             {isRegister ? "Аккаунтыңыз бар ма?" : "Аккаунтыңыз жоқ па?"}{" "}
-            <Link href={isRegister ? "/login" : "/register"} className="font-bold text-indigo-600 hover:text-indigo-800">{isRegister ? "Кіру" : "Тіркелу"}</Link>
+            <Link href={isRegister ? "/login" : "/register"} onClick={(event) => { if (destination() === "/assistant") { event.preventDefault(); router.push(`${isRegister ? "/login" : "/register"}?next=/assistant`); } }} className="font-bold text-indigo-600 hover:text-indigo-800">{isRegister ? "Кіру" : "Тіркелу"}</Link>
           </p>
         </div>
       </div>
