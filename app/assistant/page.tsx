@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import { Bot, RotateCcw, Send, Sparkles, UserRound } from "lucide-react";
 import { SectionTitle } from "@/components/ui";
 import { useAuth } from "@/components/AuthProvider";
+import MathMessage from "@/components/MathMessage";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -97,7 +98,7 @@ export default function AssistantPage() {
                   <p className="mt-1 text-sm leading-5 text-slate-500">Алгебра, геометрия, статистика немесе басқа математикалық тақырып бойынша сұрақ қой.</p>
                 </div>
               )}
-              {messages.map((message, index) => <div key={index} className={`flex items-start gap-3 ${message.role === "user" ? "flex-row-reverse" : ""}`}><span className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl ${message.role === "user" ? "bg-slate-100 text-slate-600" : "bg-indigo-50 text-indigo-600"}`}>{message.role === "user" ? <UserRound size={18} /> : <Bot size={18} />}</span><div className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-sm leading-7 sm:max-w-[78%] ${message.role === "user" ? "bg-indigo-600 text-white" : "bg-slate-50 text-slate-800"}`}>{message.content}</div></div>)}
+              {messages.map((message, index) => <div key={index} className={`flex items-start gap-3 ${message.role === "user" ? "flex-row-reverse" : ""}`}><span className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl ${message.role === "user" ? "bg-slate-100 text-slate-600" : "bg-indigo-50 text-indigo-600"}`}>{message.role === "user" ? <UserRound size={18} /> : <Bot size={18} />}</span><div className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-sm leading-7 sm:max-w-[78%] ${message.role === "user" ? "bg-indigo-600 text-white" : "bg-slate-50 text-slate-800"}`}>{message.role === "assistant" ? <MathMessage content={message.content} /> : message.content}</div></div>)}
               {pending && <div className="flex items-center gap-3 text-sm text-slate-500"><span className="grid h-9 w-9 place-items-center rounded-xl bg-indigo-50 text-indigo-600"><Bot size={18} /></span><span className="animate-pulse">Жауап дайындалып жатыр…</span></div>}
               <div ref={bottomRef} />
             </div>
