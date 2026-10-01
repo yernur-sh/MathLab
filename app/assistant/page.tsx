@@ -38,6 +38,8 @@ export default function AssistantPage() {
       if (!response.ok || typeof data.answer !== "string") throw new Error(data.error || "Жауап алу мүмкін болмады.");
       setMessages((current) => [...current, { role: "assistant", content: data.answer }]);
     } catch (caught) {
+      setMessages((current) => current.slice(0, -1));
+      setInput((current) => current || trimmed);
       setError(caught instanceof Error ? caught.message : "Жауап алу мүмкін болмады.");
     } finally {
       setPending(false);
